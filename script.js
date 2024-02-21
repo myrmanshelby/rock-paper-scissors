@@ -41,8 +41,30 @@ function playRound(playerSelection, computerSelection) {
 // Plays a 5 round game of rock, paper, scissors
 function playGame() {
   // INIT wins, losses, and ties = 0
-  // FOR each game 1-5
-  //  PROMPT user input
+  let wins = 0;
+  let losses = 0;
+  let ties = 0;
+
+  // Play rounds 1-5
+  for (let i = 0; i < 5; i++) {
+    // get user input and convert to lowercase
+    let playerSelection = prompt(
+      "Please type your selection (rock, paper, or scissors)."
+    ).toLowerCase();
+
+    // confirm that user input is valid
+    while (
+      !(
+        playerSelection === "rock" ||
+        playerSelection === "paper" ||
+        playerSelection === "scissors"
+      )
+    ) {
+      playerSelection = prompt(
+        "Invalid entry. Please type your selection (rock, paper, or scissors)."
+      );
+    }
+  }
   //  CALL playRound
   //  IF win THEN
   //    INCREMENT wins
