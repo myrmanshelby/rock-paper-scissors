@@ -50,20 +50,46 @@ function playGame() {
     // get user input and convert to lowercase
     let playerSelection = prompt(
       "Please type your selection (rock, paper, or scissors)."
-    ).toLowerCase();
+    );
 
     // confirm that user input is valid
     while (
       !(
-        playerSelection === "rock" ||
-        playerSelection === "paper" ||
-        playerSelection === "scissors"
+        playerSelection.toLowerCase() === "rock" ||
+        playerSelection.toLowerCase() === "paper" ||
+        playerSelection.toLowerCase() === "scissors"
       )
     ) {
       playerSelection = prompt(
         "Invalid entry. Please type your selection (rock, paper, or scissors)."
       );
     }
+
+    // play round and increment based on outcome
+    let computerSelection = getComputerChoice();
+    switch (playRound(playerSelection, computerSelection)) {
+      case "win":
+        wins++;
+        break;
+      case "lose":
+        losses++;
+        break;
+      case "tie":
+        ties++;
+        break;
+    }
+
+    console.log(
+      playerSelection +
+        " " +
+        computerSelection +
+        "wins: " +
+        wins +
+        " losses: " +
+        losses +
+        " ties: " +
+        ties
+    );
   }
   //  CALL playRound
   //  IF win THEN
