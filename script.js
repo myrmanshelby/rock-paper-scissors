@@ -1,15 +1,41 @@
 // Randomly returns 'Rock', 'Paper', or 'Scissors'
 function getComputerChoice() {
-  //randomly generate num 1-3
-  //return if 1 rock, if 2 paper, if 3 scissors - make sure they're all LC
+  // Randomly generate num 1-3
+  let rand = Math.floor(Math.random() * 3);
+
+  // Return computer choice based on number assignment
+  switch (rand) {
+    case 0:
+      return "rock";
+    case 1:
+      return "paper";
+    case 2:
+      return "scissors";
+  }
 }
 
 // Plays a single round of rock, paper, scissors
 function playRound(playerSelection, computerSelection) {
   // convert playerselection to lowercase
-  // if ps = cs, return tie
-  // else if (ps = rock and cs = scissors) or (ps = scissors and cs = paper) or (ps = paper and cs = rock), return win
-  // else return lose
+  playerSelection = playerSelection.toLowerCase();
+
+  // return result of round
+  //tie case
+  if (playerSelection === computerSelection) {
+    return "tie";
+  }
+  //cases where player wins
+  else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    return "win";
+  }
+  // cases where player loses
+  else {
+    return "lose";
+  }
 }
 
 // Plays a 5 round game of rock, paper, scissors
