@@ -79,27 +79,27 @@ function playGame() {
         break;
     }
 
+    // TEST: prints results for each round
+    /*
     console.log(
       playerSelection +
         " " +
         computerSelection +
-        "wins: " +
+        " wins: " +
         wins +
         " losses: " +
         losses +
         " ties: " +
         ties
-    );
+    ); */
   }
-  //  CALL playRound
-  //  IF win THEN
-  //    INCREMENT wins
-  //  ELSE IF loss
-  //    INCREMENT losses
-  //  ELSE
-  //    INCREMENT ties
-  //
-  // IF more wins than losses, log win
-  // ELSE IF more losses than wins, log loss
-  // ELSE IF wins = losses, log tie
+
+  // Determine winner
+  if (wins > losses) {
+    console.log("Congrats! You win!");
+  } else if (losses > wins) {
+    console.log("Boo! You lose!");
+  } else {
+    console.log("Huh! It's a tie!");
+  }
 }
