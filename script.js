@@ -16,11 +16,9 @@ function getComputerChoice() {
 
 // Plays a single round of rock, paper, scissors
 function playRound(playerSelection, computerSelection) {
-  // convert playerselection to lowercase
   playerSelection = playerSelection.toLowerCase();
 
   // return result of round
-  //tie case
   if (playerSelection === computerSelection) {
     return "tie";
   }
@@ -31,9 +29,7 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "paper" && computerSelection === "rock")
   ) {
     return "win";
-  }
-  // cases where player loses
-  else {
+  } else {
     return "lose";
   }
 }
@@ -103,3 +99,63 @@ function playGame() {
     console.log("Huh! It's a tie!");
   }
 }
+
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll("button");
+
+let winCount = 0;
+let lossCount = 0;
+
+const body = document.querySelector("body");
+const div = document.createElement("div");
+body.appendChild(div);
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {
+    let compChoice = getComputerChoice();
+    let result = playRound(button.id, compChoice);
+
+    let losingChoice = compChoice;
+    let winningChoice = button.id;
+
+    if (result === "win") {
+      winCount++;
+    } else if (result === "lose") {
+      lossCount++;
+      winningChoice = compChoice;
+      losingChoice = button.id;
+    }
+
+    let newText = "";
+    if (result === "tie") {
+      newText =
+        "It's a tie!\r\nPlayer wins: " +
+        winCount +
+        " Player losses: " +
+        lossCount;
+    } else {
+      newText =
+        winningChoice +
+        " beats " +
+        losingChoice +
+        "!\r\nPlayer wins: " +
+        winCount +
+        " Player losses: " +
+        lossCount;
+    }
+
+    div.textContent = newText;
+
+    if (winCount >= 5) {
+      div.textContent += "\r\nPlayer wins!";
+      winCount = 0;
+      lossCount = 0;
+    } else if (lossCount >= 5) {
+      div.textContent += "\r\nPlayer loses!";
+      winCount = 0;
+      lossCount = 0;
+    }
+  });
+});
